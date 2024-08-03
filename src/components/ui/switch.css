@@ -1,0 +1,79 @@
+.switch input:focus-visible + label,
+.switch input:focus-visible + label::after {
+  @apply border-2 border-ring;
+}
+
+.switch label::after {
+  @apply bg-red-500;
+  content: "";
+  display: block;
+  border-radius: 100%;
+  animation-name: switch-size;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-out;
+  animation-direction: forwards;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+}
+
+.switch label::after,
+.switch label .switch__switch-on,
+.switch label .switch__switch-off {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%) translateX(-50%);
+  transition:
+    left 0.15s ease-in-out,
+    background-color 0.2s ease-out,
+    width 0.15s ease-in-out,
+    height 0.15s ease-in-out,
+    opacity 0.15s ease-in-out;
+}
+
+.switch input:checked + label::after,
+.switch input:checked + label .switch__switch-on,
+.switch input:checked + label .switch__switch-off {
+  left: 75%;
+}
+
+.switch input:checked + label::after {
+  @apply bg-green-500;
+  animation-name: switch-size;
+}
+
+.switch .switch__switch-on,
+.switch .switch__switch-off {
+  opacity: 1;
+  z-index: 2;
+}
+
+.switch input:checked + label .switch__switch-off,
+.switch input:not(:checked) + label .switch__switch-on {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.switch .switch__path {
+  @apply stroke-primary-foreground;
+  fill: none;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}
+
+@keyframes switch-size {
+  0%,
+  100% {
+    width: 28px;
+    height: 28px;
+  }
+
+  50% {
+    width: 20px;
+    height: 20px;
+  }
+}
