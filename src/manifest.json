@@ -5,5 +5,14 @@
   "version": "0.0.1",
   "action": {
     "default_popup": "index.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "odysseus@starpanda.ru"
+    }
+  },
+  "permissions": ["nativeMessaging"],
+  "background": {
+    "scripts": ["background.js"]
   }
 }

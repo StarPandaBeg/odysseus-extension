@@ -11,4 +11,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        popup: path.resolve(__dirname, "./index.html"),
+        background: path.resolve(__dirname, "./src/background/background.ts"),
+      },
+      output: {
+        entryFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "background") {
+            return "background.js";
+          }
+          return "[name].js";
+        },
+      },
+    },
+  },
 });
